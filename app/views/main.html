@@ -1,0 +1,68 @@
+<div class="jumbotron" ng-show="sessionData.state == 'setup'">
+  <h1>Let's start!</h1>
+  <p class="lead">
+    <img src="images/netflix.png" alt="Netflix"><br>
+  </p>
+  <div layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding>
+     <p>Setup your eureka dashboard</p>
+      <div>
+        <form name="eurekaForm">
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Eureka Server URL</label>
+              <input required type="url" name="urlinput" ng-model="sessionData.url">
+              <div ng-messages="eurekaForm.urlinput.$error" multiple md-auto-hide="false">
+                <div ng-message="required" ng-show="eurekaForm.urlinput.$error.required">
+                  Please specify which eureka instance you want this dashboard to point to!
+                </div>
+                <div ng-message="url" ng-show="eurekaForm.urlinput.$error.url">
+                  Not a valid url!
+                </div>
+                <div ng-message="loadfail" ng-show="eurekaForm.urlinput.$error.loadfail">
+                  Unable to reach eureka instance!
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+        </form>
+      </div>
+      <md-button type="button" class="md-raised md-primary" ng-click="setupEureka($event)">Start <span class="glyphicon glyphicon-ok"></md-button>
+    </md-content>
+  </div>
+</div>
+
+<div class="row marketing" ng-show="sessionData.state == 'loading'">
+  <h4>{{sessionData.promptHeader}}</h4>
+  <p>
+    {{sessionData.prompt}}
+  </p>
+  <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+</div>
+
+<div class="row marketing" ng-show="sessionData.state == 'loaded'">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="List Mode" ng-click="changeToListMode()" ng-disabled="sessionData.mode == 'list'">
+        <i class="material-icons md-48">list</i>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Grid Mode" ng-click="changeToGridMode()" ng-disabled="sessionData.mode == 'grid'">
+        <i class="material-icons md-48">view_module</i>
+      </md-button>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Grid Mode" ng-click="refresh()">
+        <i class="material-icons md-48">cached</i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content class="application-list">
+    <md-list-item class="md-3-line" ng-repeat="app in sessionData.applications">
+      <i class="material-icons md-48 md-avatar">{{app | getStatus}}</i>
+      <div class="md-list-item-text" layout="column">
+        <h3>{{app.name}}</h3>
+        <h4>{{app.instance[0].instanceId}}</h4>
+        <p>Started: {{app.instance[0].lastDirtyTimestamp | date:'medium'}}</p>
+      </div>
+    </md-list-item>
+  </md-content>
+</div>
