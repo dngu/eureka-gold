@@ -8,7 +8,7 @@
  * Controller of the eurekaGoldApp
  */
 angular.module('eurekaGoldApp')
-  .controller('MainCtrl', function ($scope, httpService, $timeout) {
+  .controller('MainCtrl', function ($scope, httpService, $timeout, $window) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -41,6 +41,19 @@ angular.module('eurekaGoldApp')
 		$timeout(function() {
 			httpService.async($scope.sessionData.url, '/apps').then(onSuccessfulAppLoad, onFailureAppLoad);
 		}, 1000);
+    };
+
+    $scope.refresh = function() {
+    	httpService.async($scope.sessionData.url, '/apps').then(onSuccessfulAppLoad, onFailureAppLoad);
+    };
+
+    $scope.clearSearch = function() {
+    	$scope.showSearch = !$scope.showSearch;
+    	$scope.query = '';
+    };
+
+    $scope.redirectToPage = function(url) {
+    	$window.open(url, '_blank');
     };
 
   });

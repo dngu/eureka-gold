@@ -41,27 +41,56 @@
 </div>
 
 <div class="row marketing" ng-show="sessionData.state == 'loaded'">
-  <md-toolbar>
+  <md-toolbar ng-show="!showSearch">
     <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" aria-label="List Mode" ng-click="changeToListMode()" ng-disabled="sessionData.mode == 'list'">
-        <i class="material-icons md-48">list</i>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="Grid Mode" ng-click="changeToGridMode()" ng-disabled="sessionData.mode == 'grid'">
-        <i class="material-icons md-48">view_module</i>
-      </md-button>
+      <h4>
+        <span>{{sessionData.applications.length}} applications registered</span>
+      </h4>
       <span flex></span>
+      <md-button class="md-icon-button" aria-label="List Mode" ng-click="showSearch = !showSearch" ng-disabled="sessionData.searchMode == false">
+        <i class="material-icons md-48">search</i>
+      </md-button>
       <md-button class="md-icon-button" aria-label="Grid Mode" ng-click="refresh()">
         <i class="material-icons md-48">cached</i>
       </md-button>
     </div>
   </md-toolbar>
+  <md-toolbar class="searchbar" ng-show="showSearch">
+    <div class="md-toolbar-tools">
+      <md-input-container md-theme="input" flex>
+        <input ng-model="query" placeholder="Application Filter" class="searchInput">
+      </md-input-container>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="List Mode" ng-click="clearSearch()" ng-disabled="sessionData.searchMode == false">
+        <i class="material-icons md-48 md-light">clear</i>
+      </md-button>
+    </div>
+  </md-toolbar>
   <md-content class="application-list">
-    <md-list-item class="md-3-line" ng-repeat="app in sessionData.applications">
-      <i class="material-icons md-48 md-avatar">{{app | getStatus}}</i>
-      <div class="md-list-item-text" layout="column">
-        <h3>{{app.name}}</h3>
-        <h4>{{app.instance[0].instanceId}}</h4>
-        <p>Started: {{app.instance[0].lastDirtyTimestamp | date:'medium'}}</p>
+    <md-list-item class="md-3-line" ng-repeat="app in sessionData.applications | filter:query">
+      <div flex layout layout-align="center center">
+        <div flex layout="row">
+          <span class="big-icon glyphicon glyphicon-{{app | getStatus}} {{app | getStatus}}-icon"></span>
+          <div class="md-list-item-text" layout="column">
+            <h3>{{app.name}}</h3>
+            <h4>{{app.instance[0].instanceId}}</h4>
+            <p class="datetime">Started: {{app.instance[0].lastDirtyTimestamp | date:'medium'}}</p>
+          </div>
+        </div>
+        <span flex></span>
+        <div class="commandList">
+          <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{app.instance[0].homePageUrl}}" aria-label="List Mode" ng-click="changeToListMode()">
+            <i class="material-icons md-48">content_paste</i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="List Mode" ng-click="redirectToPage(app.instance[0].statusPageUrl)">
+            <i class="material-icons md-48">show_chart</i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="List Mode" ng-click="redirectToPage(app.instance[0].healthCheckUrl)">
+            <i class="material-icons md-48">favorite</i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="List Mode" ng-click="changeToListMode()">
+            <i class="material-icons md-48">block</i>
+          </md-button>
       </div>
     </md-list-item>
   </md-content>

@@ -85,11 +85,69 @@ body {
 }
 
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-  background-color: #B9CFD4
+  background-color: #373F51;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.md-subheader.md-default-theme.md-primary, .md-subheader.md-primary {
+  background-color: #CEE0DC;
 }
 
 .application-list {
   background-color: #CEE0DC;
   padding-bottom: 30px;
-  padding-top: 20px;
+  padding-top: 30px;
+}
+
+.big-icon {
+  font-size: 46px;
+  padding: 20px;
+}
+
+.remove-sign-icon {
+  color: #A5243D
+}
+
+.ok-sign-icon {
+  color: #467657;
+}
+
+.question-sign-icon {
+  color: #DCC48E;
+}
+
+.datetime {
+  white-space: nowrap;
+}
+
+.commandList {
+  padding-right: 10px;
+}
+
+md-toolbar.md-default-theme.searchbar, md-toolbar.searchbar {
+  background-color: #467657;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar) .md-button:not(.md-raised), md-toolbar:not(.md-menu-toolbar) .md-button:not(.md-raised) {
+  color: 'black';
+}
+
+.md-toolbar-tools {
+  margin-top: 30px;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+  border-color: #FFFFFF;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label {
+  color: #FFFFFF;
+}
+
+md-input-container.md-default-theme .md-input, md-input-container .md-input {
+  color: #CEE0DC;
+  margin-bottom: -20px;
 }

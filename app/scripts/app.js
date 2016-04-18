@@ -14,7 +14,8 @@ angular
     'ngRoute',
     'ngMaterial',
     'eurekaGold.services',
-    'eurekaGold.filters'
+    'eurekaGold.filters',
+    'ngclipboard'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -28,5 +29,14 @@ angular
       })
       .otherwise({
         redirectTo: '/'
+      });
+  })
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('light-blue', {
+        'default': '900',
+        'hue-1': '900',
+        'hue-2': '900',
+        'hue-3': '900'
       });
   });
