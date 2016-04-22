@@ -2,7 +2,7 @@ eureka-gold
 ===================
 A simple angular app to assist in administering Netflix Eureka
 
-
+![alt tag](https://raw.githubusercontent.com/dngu/eureka-gold/master/md_resources/screenshot.png)
 
 Setup required
 -------------
