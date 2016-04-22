@@ -139,15 +139,41 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar) .md-button:not(.md-raised), md
   margin-top: 30px;
 }
 
-md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+#serach-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, #search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input {
   border-color: #FFFFFF;
 }
 
-md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label {
+#search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, #search-bar md-input-container:not(.md-input-invalid).md-input-focused label {
   color: #FFFFFF;
 }
 
-md-input-container.md-default-theme .md-input, md-input-container .md-input {
+#search-bar md-input-container.md-default-theme .md-input, #search-bar md-input-container .md-input {
   color: #CEE0DC;
   margin-bottom: -20px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #7A8293;
+  color: #FFFFFF;
+}
+
+a {
+  color: #373F51;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #373F51;
+  color: #FFFFFF;
+}
+
+.jumbotron, md-content.md-default-theme, md-content {
+  background-color: #E1E2E4
+}
+
+#search-bar label {
+  color: #CEE0DC;
+}
+
+#search-bar input {
+  font-family: 'Roboto Condensed', sans-serif;
 }

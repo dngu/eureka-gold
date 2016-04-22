@@ -15,7 +15,8 @@ angular
     'ngMaterial',
     'eurekaGold.services',
     'eurekaGold.filters',
-    'ngclipboard'
+    'ngclipboard',
+    'ngStorage'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -27,16 +28,17 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/configure', {
+        templateUrl: 'views/configure.html',
+        controller: 'SettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
   })
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-      .primaryPalette('light-blue', {
-        'default': '900',
-        'hue-1': '900',
-        'hue-2': '900',
-        'hue-3': '900'
+      .primaryPalette('red', {
+        'default': '900'
       });
   });

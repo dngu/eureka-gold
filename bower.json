@@ -10,7 +10,8 @@
     "angular-route": "1.2.16",
     "angular-material": "^1.0.7",
     "ngclipboard": "^1.1.1",
-    "clipboard": "^1.5.10"
+    "clipboard": "^1.5.10",
+    "ngstorage": "^0.3.10"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

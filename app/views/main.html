@@ -50,15 +50,15 @@
       <md-button class="md-icon-button" aria-label="List Mode" ng-click="showSearch = !showSearch" ng-disabled="sessionData.searchMode == false">
         <i class="material-icons md-48">search</i>
       </md-button>
-      <md-button class="md-icon-button" aria-label="Grid Mode" ng-click="refresh()">
+      <md-button class="md-icon-button" aria-label="Grid Mode" ng-click="refresh()" ng-disabled="sessionData.refreshing">
         <i class="material-icons md-48">cached</i>
       </md-button>
     </div>
   </md-toolbar>
-  <md-toolbar class="searchbar" ng-show="showSearch">
+  <md-toolbar class="searchbar" id="search-bar" ng-show="showSearch">
     <div class="md-toolbar-tools">
-      <md-input-container md-theme="input" flex>
-        <input ng-model="query" placeholder="Application Filter" class="searchInput">
+      <md-input-container flex>
+        <input ng-model="query" placeholder="Filter" class="searchInput">
       </md-input-container>
       <span flex></span>
       <md-button class="md-icon-button" aria-label="List Mode" ng-click="clearSearch()" ng-disabled="sessionData.searchMode == false">
@@ -79,16 +79,28 @@
         </div>
         <span flex></span>
         <div class="commandList">
-          <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{app.instance[0].homePageUrl}}" aria-label="List Mode" ng-click="changeToListMode()">
+          <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{app.instance[0].homePageUrl}}" aria-label="Copy URL">
+            <md-tooltip md-direction="bottom">
+              Copy URL
+            </md-tooltip>
             <i class="material-icons md-48">content_paste</i>
           </md-button>
-          <md-button class="md-icon-button" aria-label="List Mode" ng-click="redirectToPage(app.instance[0].statusPageUrl)">
+          <md-button class="md-icon-button" aria-label="Stats" ng-click="redirectToPage(app.instance[0].statusPageUrl)">
+            <md-tooltip md-direction="bottom">
+              Stats
+            </md-tooltip>
             <i class="material-icons md-48">show_chart</i>
           </md-button>
-          <md-button class="md-icon-button" aria-label="List Mode" ng-click="redirectToPage(app.instance[0].healthCheckUrl)">
+          <md-button class="md-icon-button" aria-label="Heartbeat" ng-click="redirectToPage(app.instance[0].healthCheckUrl)">
+            <md-tooltip md-direction="bottom">
+              Heartbeat
+            </md-tooltip>
             <i class="material-icons md-48">favorite</i>
           </md-button>
-          <md-button class="md-icon-button" aria-label="List Mode" ng-click="changeToListMode()">
+          <md-button class="md-icon-button" aria-label="Deregister" ng-click="deregister(app)">
+            <md-tooltip md-direction="bottom">
+              Deregister
+            </md-tooltip>
             <i class="material-icons md-48">block</i>
           </md-button>
       </div>
